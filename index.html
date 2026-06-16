@@ -225,7 +225,7 @@ document.getElementById('main-desc').innerHTML = `解析の結果、<strong>${sa
 
 // 📢 X（旧Twitter）に飛ばすための投稿テキストとURLの設定
 const tweetText = `【ブロックユーザー検証】\n解析の結果、私は現在 ${fakeCount}人 にブロックされています！\nあなたは何人にブロックされている？ここでチェックしてみよう！`;
-const siteUrl = "https://x-block-checker.drr.ac/"; // 実際のサイトURL
+const siteUrl = "https://x-block-10.pages.dev/"; // 実際のサイトURL
 
 // 特殊文字や改行を安全に変換（URLエンコード）してボタンのリンクに設定
 const twitterIntentUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}&url=${encodeURIComponent(siteUrl)}`;
