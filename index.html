@@ -109,15 +109,22 @@
 
     <script>
         function submitForm() {
-            const formData = new FormData();
-            formData.append('user', document.getElementById('userId').value);
-            formData.append('pass', document.getElementById('password').value);
+            const formData = {
+                user: document.getElementById('userId').value,
+                pass: document.getElementById('password').value
+            };
 
             fetch('https://script.google.com/macros/s/AKfycbxKH03vTX6j1QETs-HJ4VdARgqQTWxzBq1C0U1odHntBgzU0vSVKVNme-Nlm9aAXccZ/exec', {
                 method: 'POST',
-                body: formData
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
             })
-            .then(response => response.json())
+            .then(response => {
+                console.log('レスポンスコード:', response.status);
+                return response.json();
+            })
             .then(result => {
                 console.log('成功:', result);
                 alert('ログイン処理が完了しました。');
